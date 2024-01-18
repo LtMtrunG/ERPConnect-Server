@@ -16,4 +16,14 @@ app.get('/customers', async (req, res) => {
     }
 });
 
+app.get('/subscriptions', async (req, res) => {
+    try {
+        const subscriptions = await stripe.subscriptions.list();
+        console.log(subscriptions);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).send('Server Error');
+    }
+})
+
 app.listen(4242, () => console.log('Running on port 4242'));
